@@ -1,0 +1,81 @@
+{% extends "base.html" %}
+{% block start %}
+
+<div class="jumbotron jumbotron-fluid ">
+    <div class="container">
+        <div class="row">
+            <div class="col-md-4">
+                 <img class="image-thumbnail rounded mx-auto d-block" src="/media/{{restraunt.restraunt_image}}"
+                alt=""  style=" height: 180px;">
+             </div>
+        
+            <div class="col-md-8">
+            <h1 class="display-4">{{restraunt.restraunt_name}}</h1>
+            <p class="lead">{{restraunt.restraunt_descripton}}</p>
+            <p class="lead">{{restraunt.restraunt_address}}</p>
+          
+            <button type="button" class="btn btn-danger"><i class="bi bi-star-fill"></i>
+              <span class="badge badge-warning">{{restraunt.restraunt_rating}}</span>
+            
+            </button>
+
+
+
+            </div>
+        </div>
+    
+
+     
+    </div>
+  </div>
+
+<section class="container py-4 py-sm-5">
+    <div class="col-md-12">
+      <div class="row">
+        {% for menu in menus %}
+          <div class="col-md-4">
+              <div class="card m-2">
+                  <img class="image-thumbnail rounded" src="/media/{{menu.menu_image}}"
+                      alt="" style=" height: 200px;">
+
+                     
+                  <div class="card-body text-center pt-3 pb-4">
+                     <h5 class="card-text"> {{menu.menu_name}}</h5>
+                     <div class="font-size-ms text-muted">{{menu.menu_description}}</div>
+                     
+    
+                  </div>
+                  <div class="card-body ">
+                    <div class="row">
+                      <div class="col-sm-6">
+                        <h5 class="card-text">Rs - {{menu.menu_price}}</h5>
+                      </div>
+                      <div class="col-sm-6">
+                        
+
+                        <div class="btn-group  " role="group" aria-label="Basic example">
+                          <a  href="{% url  'remove_cart' menu.id %}" class="btn btn-secondary  "><i class="bi bi-cart-dash-fill"></i></a>
+                          <a href="{% url  'add_cart' menu.id %}" class="btn btn-secondary"><i class="bi bi-cart-plus-fill"></i></a>
+                         
+                        </div>
+
+
+
+                      </div>
+
+                    </div>
+                   
+                     
+                     
+    
+                  </div>
+                
+               
+              </div>
+          </div>
+          {% endfor %}
+          
+      </div>
+    </div>
+  </section>
+{% endblock %}
